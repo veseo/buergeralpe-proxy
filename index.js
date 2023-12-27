@@ -3,6 +3,13 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Adjust the * to the specific origin(s) you want to allow
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.use('/', async (req, res) => {
   try {
     const response = await fetch('https://content.bergfex.at/data/28/skigebiet/schneeberichte.json');
