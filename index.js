@@ -2,7 +2,6 @@ const express = require('express');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const app = express();
-const PORT = 3000;
 
 app.use('/', async (req, res) => {
   try {
@@ -15,6 +14,6 @@ app.use('/', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
